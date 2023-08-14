@@ -8,7 +8,7 @@ namespace GenericsChallenge
         static void Main(string[] args)
         {
             // Example usage with integers
-            List<string> list1 = new List<string> { "Count One", "Count Two", "Count Three", "Count Four", "Count Five" };
+         /*   List<string> list1 = new List<string> { "Count One", "Count Two", "Count Three", "Count Four", "Count Five" };
             List<string> list2 = new List<string> { "Count 1", "Count 2", "Count 3" };
 
             List<string> intermixedList = IntermixLists(list1, list2);
@@ -17,7 +17,9 @@ namespace GenericsChallenge
             foreach (string item in intermixedList)
             {
                 Console.WriteLine(item);
-            }
+            }*/
+
+            Person 
         }
 
         private static List<T> IntermixLists<T>(List<T> list1, List<T> list2)
@@ -64,10 +66,19 @@ namespace GenericsChallenge
         // sure each object that is passed in has a Title property
         // in it.Return the object with the longer title.
 
-        private static void DetermineLongerTitle<T, U>(T item1, U item2)
+
+        // when we limit the method to things that have implemented the IHaveTitle interface, we can access the .Title property inside the method, and also return an IHaveTitle type
+        private static IHaveTitle DetermineLongerTitle<T, U>(T item1, U item2) where T : IHaveTitle
+                                                                               where U : IHaveTitle 
         {
-
+            if (item1.Title.Length > item2.Title.Length)
+            {
+                return item1;
+            }
+            else
+            {
+                return item2;
+            }
         }
-
     }
 }
