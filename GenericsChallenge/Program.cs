@@ -22,28 +22,41 @@ namespace GenericsChallenge
 
         static List<T> IntermixLists<T>(List<T> list1, List<T> list2)
         {
-            List<T> resultList = new List<T>();
-            int index1 = 0, index2 = 0;
+            List<T> output = new List<T>();
+            List<T> biggerList;
+            List<T> smallerList;
 
-            // Determine which list is bigger to start with that one
-            bool pullFromList1 = list1.Count >= list2.Count;
-
-            while (index1 < list1.Count || index2 < list2.Count)
+            if (list1.Count > list2.Count)
             {
-                if (pullFromList1 && index1 < list1.Count)
-                {
-                    resultList.Add(list1[index1++]);
-                }
-                else if (index2 < list2.Count)
-                {
-                    resultList.Add(list2[index2++]);
-                }
-
-                // Alternate between lists
-                pullFromList1 = !pullFromList1;
+                biggerList = list1;
+                smallerList = list2;
+            }
+            else
+            {
+                biggerList = list2;
+                smallerList = list1;
             }
 
-            return resultList;
+            int smallerCount = smallerList.Count;
+
+
+            // iterate through the biggerlist as that is the range
+            for (int i = 0; i < biggerList.Count; i++)
+            {
+                // add biggerList at i
+                output.Add(biggerList[i]);
+
+                // if the index is less than the count of the smaller list, add 
+                // the smallerList at i as well
+                // this way it will go, biggerList, smallerList, biggerList, smallerList
+                // until smallerList runs out.
+                // This is how we merge the lists together.
+                if (i < smallerCount)
+                {
+                    output.Add(smallerList[i]);
+                }
+            }
+            return output;
         }
     }
 }
