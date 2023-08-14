@@ -20,7 +20,7 @@ namespace GenericsChallenge
             }
         }
 
-        static List<T> IntermixLists<T>(List<T> list1, List<T> list2)
+        private static List<T> IntermixLists<T>(List<T> list1, List<T> list2)
         {
             List<T> output = new List<T>();
             List<T> biggerList;
@@ -58,5 +58,16 @@ namespace GenericsChallenge
             }
             return output;
         }
+
+        // Create another generics method that takes in two
+        // generic objects(of the same or different types). Make
+        // sure each object that is passed in has a Title property
+        // in it.Return the object with the longer title.
+
+        private static void DetermineLongerTitle<T, U>(T item1, U item2)
+        {
+
+        }
+
     }
 }
